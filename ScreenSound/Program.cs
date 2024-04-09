@@ -37,35 +37,51 @@ void ExibirOpcoesDoMenu()
     Console.WriteLine("Digite 4 para avaliar uma banda");
     Console.WriteLine("Digite 5 para exibir os detalhes de uma banda");
     Console.WriteLine("Digite -1 para sair");
-
-    Console.Write("\nDigite a sua opção: ");
-    string opcaoEscolhida = Console.ReadLine()!;
-    int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
-
-    switch (opcaoEscolhidaNumerica)
+    try
     {
-        case 1:
-            RegistrarBanda();
-            break;
-        case 2:
-            RegistrarAlbum();
-            break;
-        case 3:
-            MostrarBandasRegistradas();
-            break;
-        case 4:
-            AvaliarUmaBanda();
-            break;
-        case 5:
-            ExibirDetalhes();
-            break;
-        case -1:
-            Console.WriteLine("Tchau tchau :)");
-            break;
-        default:
-            Console.WriteLine("Opção inválida");
-            break;
+
+        Console.Write("\nDigite a sua opção: ");
+        string opcaoEscolhida = Console.ReadLine()!;
+        int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
+
+        switch (opcaoEscolhidaNumerica)
+        {
+            case 1:
+                RegistrarBanda();
+                break;
+            case 2:
+                RegistrarAlbum();
+                break;
+            case 3:
+                MostrarBandasRegistradas();
+                break;
+            case 4:
+                AvaliarUmaBanda();
+                break;
+            case 5:
+                ExibirDetalhes();
+                break;
+            case -1:
+                Console.WriteLine("Tchau tchau :)");
+                break;
+            default:
+                Console.WriteLine("Opção inválida");
+                break;
+        }
     }
+    catch (FormatException)
+    {
+        Console.WriteLine("Por favor, insira uma opção válida (número).");
+        Thread.Sleep(3000);
+        ExibirOpcoesDoMenu();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ocorreu um erro: {ex.Message}");
+        Thread.Sleep(4000);
+        ExibirOpcoesDoMenu();
+    }
+
 }
 
 void RegistrarAlbum()
@@ -88,9 +104,9 @@ void RegistrarAlbum()
     }
     else
     {
-        Console.WriteLine("Banda não encontrada");
-        Console.WriteLine("\nVoltando ao Menu...");
-        Thread.Sleep(4000);
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
+        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+        Console.ReadKey();
         Console.Clear();
     }
     ExibirOpcoesDoMenu();
@@ -144,7 +160,7 @@ void AvaliarUmaBanda()
     Console.Write("Digite o nome da banda que deseja avaliar: ");
     string nomeDaBanda = Console.ReadLine()!;
     // Ele verifica se a coleção contém uma chave específica (bool)
-    if (!bandasRegistradas.ContainsKey(nomeDaBanda))
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
     {
         Banda banda = bandasRegistradas[nomeDaBanda]; // Encapsulando para ter acesso aos metodos do mesmo
         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
@@ -173,7 +189,7 @@ void ExibirDetalhes()
     ExibirTituloDaOpcao("Exibir detalhes da banda");
     Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
     string nomeDaBanda = Console.ReadLine()!;
-    if (!bandasRegistradas.ContainsKey(nomeDaBanda))
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
     {
         Banda banda = bandasRegistradas[nomeDaBanda];
         Console.WriteLine($"\nA média da banda {nomeDaBanda} é {banda.Media}.");

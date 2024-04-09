@@ -1,4 +1,4 @@
-﻿// A declaração using é para usar o namespace sem declarar o mesmo toda vez
+﻿    // A declaração using é para usar o namespace sem declarar o mesmo toda vez
 using ScreenSound.Modelos;
 
 // Bandas iniciais

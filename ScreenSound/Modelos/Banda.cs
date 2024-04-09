@@ -4,13 +4,18 @@ class Banda
 {
     public Banda(string nome) => Nome = nome;
 
-    private List<Album> albuns = new List<Album>();
+    private List<Album> albuns = new();
+    private List<int> notas = new();
 
     public string Nome { get; }
 
     public void AdicionarAlbum(Album album)
     {
         albuns.Add(album);
+    }
+    public void AdicionarNota(int nota)
+    {
+        notas.Add(nota);
     }
 
     public void ExibirDiscografia()

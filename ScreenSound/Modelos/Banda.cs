@@ -6,6 +6,7 @@ class Banda
 
     public double Media => notas.Average();
 
+    // Lista de albuns da Banda
     private List<Album> albuns = new();
 
     private List<int> notas = new();

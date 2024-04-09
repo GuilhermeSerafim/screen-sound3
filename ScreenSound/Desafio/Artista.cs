@@ -1,40 +1,44 @@
-﻿namespace Alura.Filmes;
-
-
-public class Artista
+﻿namespace Alura.Filmes
 {
-    private string Nome { get; }
-    private int Idade { get; }
-    private List<Filme> FilmesAtuados { get; set; }
-    public int QuantidadeDeFilmes => FilmesAtuados.Count;
 
-
-    public Artista(string nome, int idade)
+    public class Artista
     {
-        Nome = nome;
-        Idade = idade;
-        FilmesAtuados = new List<Filme>();
-    }
+        public string Nome { get; set; }
+        public int Idade { get; set; }
+        public List<Filme> FilmesAtuados { get; set; }
+        public int QuantidadeDeFilmes => FilmesAtuados.Count;
 
 
-    public void AdicionarFilme(string filme)
-    {
-        FilmesAtuados.Add(filme);
-    }
-
-    public void MostrarFilmesAtuados()
-    {
-
-        if (this.FilmesAtuados.Count == 0)
+        public Artista(string nome, int idade)
         {
-            Console.WriteLine($"Nenhum filme encontrado na base para {this.Nome}");
-            return;
+            Nome = nome;
+            Idade = idade;
+            FilmesAtuados = new List<Filme>();
         }
 
-        Console.WriteLine($"Filmes de {this.Nome}...");
-        foreach (var filme in FilmesAtuados)
+
+        public void AdicionarFilme(Filme filme)
         {
-            Console.WriteLine($"Filme: {filme.Titulo}");
+            FilmesAtuados.Add(filme);
+            // This - Artista
+            // Consistência com a classe Filme
+            filme.Elenco.Add(this.Nome);
+        }
+
+        public void MostrarFilmesAtuados()
+        {
+
+            if (this.FilmesAtuados.Count == 0)
+            {
+                Console.WriteLine($"Nenhum filme encontrado na base para {this.Nome}");
+                return;
+            }
+
+            Console.WriteLine($"Filmes de {this.Nome}...");
+            foreach (var filme in FilmesAtuados)
+            {
+                Console.WriteLine($"Filme: {filme.Titulo}");
+            }
         }
     }
 }

@@ -3,14 +3,14 @@
 public class Filme
 {
     public string Titulo { get; set; }
-    public List<string> Elenco { get; set; }
+    public List<Artista> Elenco { get; set; }
     public int Duracao { get; set; }
 
-    public Filme(string titulo, int duracao, List<string>? elenco)
+    public Filme(string titulo, int duracao, List<Artista>? elenco)
     {
         if (elenco == null)
         {
-            Elenco = new List<string>();
+            Elenco = new List<Artista>();
         }
         else
         {
@@ -21,10 +21,15 @@ public class Filme
         Duracao = duracao;
     }
 
-    public void AdicionarElenco(string ator)
+    public void AdicionarElenco(Artista artista)
     {
-        Elenco.Add(ator);
-        Console.WriteLine($"{ator} adicionado/a ao elenco.");
+        Elenco.Add(artista);
+        Console.WriteLine($"{artista} adicionado/a ao elenco.");
+        Console.WriteLine("teste " + this);
+        if (!artista.FilmesAtuados.Contains(this))
+        {
+            artista.AdicionarFilme(this);
+        }
     }
 
     public void ListarElenco()
@@ -36,9 +41,9 @@ public class Filme
         else
         {
             Console.WriteLine("Elenco... ");
-            foreach (var ator in Elenco)
+            foreach (var artista in Elenco)
             {
-                Console.WriteLine(ator);
+                Console.WriteLine(artista.Nome);
             }
         }
     }

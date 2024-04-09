@@ -22,7 +22,7 @@
             FilmesAtuados.Add(filme);
             // This - Artista
             // Consistência com a classe Filme
-            filme.Elenco.Add(this.Nome);
+            filme.Elenco.Add(this);
         }
 
         public void MostrarFilmesAtuados()

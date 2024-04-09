@@ -8,6 +8,7 @@ iraInicial.AdicionarNota(9);
 iraInicial.AdicionarNota(10);
 Banda beatlesInicial = new("The Beatles");
 
+// Dictionary<TKey, TValue>
 Dictionary<string, Banda> bandasRegistradas = new();
 bandasRegistradas.Add(iraInicial.Nome, iraInicial);
 bandasRegistradas.Add(beatlesInicial.Nome, beatlesInicial);
@@ -130,12 +131,14 @@ void AvaliarUmaBanda()
     ExibirTituloDaOpcao("Avaliar banda");
     Console.Write("Digite o nome da banda que deseja avaliar: ");
     string nomeDaBanda = Console.ReadLine()!;
+    // Ele verifica se a coleção contém uma chave específica (bool)
     if (bandasRegistradas.ContainsKey(nomeDaBanda))
     {
+        Banda banda = bandasRegistradas[nomeDaBanda]; // Encapsulando para ter acesso aos metodos do mesmo
         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
         int nota = int.Parse(Console.ReadLine()!);
-        Banda banda
-        bandasRegistradas[nomeDaBanda].Add(banda);
+        //bandasRegistradas[nomeDaBanda].Add(nota);
+        bandasRegistradas[nomeDaBanda].AdicionarNota(nota); // Acessando os metodos para adicionar nota (que encapsulamos na banda)
         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}");
         Thread.Sleep(2000);
         Console.Clear();

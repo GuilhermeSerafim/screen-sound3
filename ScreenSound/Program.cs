@@ -1,14 +1,16 @@
 ﻿// A declaração using é para usar o namespace sem declarar o mesmo toda vez
 using ScreenSound.Modelos;
 
-Banda ira = new("Ira!");
-ira.
-Banda beatles = new("The Beatles");
+// Bandas iniciais
+Banda iraInicial = new("Ira!");
+iraInicial.AdicionarNota(8);
+iraInicial.AdicionarNota(9);
+iraInicial.AdicionarNota(10);
+Banda beatlesInicial = new("The Beatles");
 
 Dictionary<string, Banda> bandasRegistradas = new();
-// Bandas iniciais
-bandasRegistradas.Add(ira.Nome, ira);
-bandasRegistradas.Add(beatles.Nome, beatles);
+bandasRegistradas.Add(iraInicial.Nome, iraInicial);
+bandasRegistradas.Add(beatlesInicial.Nome, beatlesInicial);
 
 void ExibirLogo()
 {
@@ -87,7 +89,9 @@ void RegistrarBanda()
     ExibirTituloDaOpcao("Registro das bandas");
     Console.Write("Digite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
-    bandasRegistradas.Add(nomeDaBanda, new List<int>());
+    // Como aqui não são bandas iniciais, quem vai digitar o nome da banda é o user, então vamos encapsular a resposta no construtor
+    Banda banda = new(nomeDaBanda);
+    bandasRegistradas.Add(banda.Nome, banda);
     Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
     Thread.Sleep(4000);
     Console.Clear();
@@ -130,7 +134,8 @@ void AvaliarUmaBanda()
     {
         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
         int nota = int.Parse(Console.ReadLine()!);
-        bandasRegistradas[nomeDaBanda].Add(nota);
+        Banda banda
+        bandasRegistradas[nomeDaBanda].Add(banda);
         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}");
         Thread.Sleep(2000);
         Console.Clear();

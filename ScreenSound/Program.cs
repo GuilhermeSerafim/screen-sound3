@@ -9,6 +9,7 @@ iraInicial.AdicionarNota(10);
 Banda beatlesInicial = new("The Beatles");
 
 // Dictionary<TKey, TValue>
+// Ou seja a chave seria o nome da banda (disponivel no construtor) e o valor seria o objeto banda, no qual teremos acesso aos metodos, entre outros
 Dictionary<string, Banda> bandasRegistradas = new();
 bandasRegistradas.Add(iraInicial.Nome, iraInicial);
 bandasRegistradas.Add(beatlesInicial.Nome, beatlesInicial);
@@ -132,7 +133,7 @@ void AvaliarUmaBanda()
     Console.Write("Digite o nome da banda que deseja avaliar: ");
     string nomeDaBanda = Console.ReadLine()!;
     // Ele verifica se a coleção contém uma chave específica (bool)
-    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    if (!bandasRegistradas.ContainsKey(nomeDaBanda))
     {
         Banda banda = bandasRegistradas[nomeDaBanda]; // Encapsulando para ter acesso aos metodos do mesmo
         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
@@ -161,10 +162,10 @@ void ExibirDetalhes()
     ExibirTituloDaOpcao("Exibir detalhes da banda");
     Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
     string nomeDaBanda = Console.ReadLine()!;
-    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    if (!bandasRegistradas.ContainsKey(nomeDaBanda))
     {
-        List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
-        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+        Banda banda = bandasRegistradas[nomeDaBanda];
+        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {banda.Media}.");
         /**
         * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
         */

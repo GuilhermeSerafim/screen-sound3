@@ -4,7 +4,10 @@ class Banda
 {
     public Banda(string nome) => Nome = nome;
 
+    public double Media => notas.Average();
+
     private List<Album> albuns = new();
+
     private List<int> notas = new();
 
     public string Nome { get; }

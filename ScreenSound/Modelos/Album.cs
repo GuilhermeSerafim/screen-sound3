@@ -4,8 +4,7 @@ namespace ScreenSound.Modelos;
 
 internal class Album
 {
-    public Album(string nome) => Nome = nome;
-
+    public static int ContadorDeObjetos = 0; 
     private List<Musica> musicas = new List<Musica>();
     public string Nome { get; }
     public int DuracaoTotal => musicas.Sum(musica => musica.Duracao); //     Soma das músicas
@@ -14,6 +13,12 @@ internal class Album
     {
         // Posso adicionar lógicas internas aqui
         musicas.Add(musica);
+    }
+    public Album(string nome)
+    {
+        Nome = nome;
+        // Toda vez que um album for criado, será incrementado
+        ContadorDeObjetos++;
     }
 
     public void ExibirMusicasDoAlbum()

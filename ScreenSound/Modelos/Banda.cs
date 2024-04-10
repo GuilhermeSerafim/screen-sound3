@@ -3,20 +3,27 @@
 internal class Banda
 {
     private List<Album> albuns = new();
-    private List<int> notas = new();
+    private List<Avaliacao> avaliacoes = new();
     public string Nome { get; }
 
     public Banda(string nome) => Nome = nome;
 
-    public double Media => notas.Average();
+    public double Media
+    {
+        get
+        {
+            if (avaliacoes.Count == 0) return 0;
+            else return avaliacoes.Average(avaliacao => avaliacao.Nota);
+        }
+    }
 
     public void AdicionarAlbum(Album album)
     {
         albuns.Add(album);
     }
-    public void AdicionarNota(int nota)
+    public void AdicionarNota(Avaliacao avaliacao)
     {
-        notas.Add(nota);
+        avaliacoes.Add(avaliacao);
     }
 
     public void ExibirDiscografia()

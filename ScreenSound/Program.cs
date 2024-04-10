@@ -3,9 +3,9 @@ using ScreenSound.Modelos;
 
 // Bandas iniciais
 Banda iraInicial = new("Ira!");
-iraInicial.AdicionarNota(8);
-iraInicial.AdicionarNota(9);
-iraInicial.AdicionarNota(10);
+iraInicial.AdicionarNota(new Avaliacao(8));
+iraInicial.AdicionarNota(new Avaliacao(9));
+iraInicial.AdicionarNota(new Avaliacao(10));
 Banda beatlesInicial = new("The Beatles");
 
 // Dictionary<TKey, TValue>
@@ -166,7 +166,7 @@ void AvaliarUmaBanda()
         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
         int nota = int.Parse(Console.ReadLine()!);
         //bandasRegistradas[nomeDaBanda].Add(nota);
-        bandasRegistradas[nomeDaBanda].AdicionarNota(nota); // Acessando os metodos para adicionar nota (que encapsulamos na banda)
+        bandasRegistradas[nomeDaBanda].AdicionarNota(new Avaliacao(nota)); // Acessando os metodos para adicionar nota (que encapsulamos na banda)
         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}");
         Thread.Sleep(2000);
         Console.Clear();

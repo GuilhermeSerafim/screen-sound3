@@ -1,6 +1,6 @@
 ﻿namespace ScreenSound.Modelos;
 
-class Musica
+internal class Musica
 {
     // Passando parametros do construtor que faz sentido para o objeto
     // O construtor faz sentido quando queremos iniciar um objeto com propriedades obrigatórias ou opcionais 

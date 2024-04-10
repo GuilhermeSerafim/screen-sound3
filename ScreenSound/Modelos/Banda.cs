@@ -1,17 +1,14 @@
 ﻿namespace ScreenSound.Modelos;
 
-class Banda
+internal class Banda
 {
+    private List<Album> albuns = new();
+    private List<int> notas = new();
+    public string Nome { get; }
+
     public Banda(string nome) => Nome = nome;
 
     public double Media => notas.Average();
-
-    // Lista de albuns da Banda
-    private List<Album> albuns = new();
-
-    private List<int> notas = new();
-
-    public string Nome { get; }
 
     public void AdicionarAlbum(Album album)
     {

@@ -6,22 +6,20 @@ public class Filme(string titulo, int duracao)
     public List<Artista> Elenco { get; set; } = new List<Artista>();
     public int Duracao { get; set; } = duracao;
 
-    public void AdicionarElenco(Artista artista)
+    public void AdicionarArtistaAoElenco(Artista artista)
     {
 
         if (artista.FilmesAtuados.Contains(this))
         {
             Console.WriteLine($"O artista {artista.Nome} já está no elenco do Filme {this.Titulo}\n");
         }
-        else if (!artista.FilmesAtuados.Contains(this))
-        {
-            Console.WriteLine($"{artista.Nome} adicionado/a ao elenco do Filme {this.Titulo}.\n");
-            // Consistência com a classe Artista
-            artista.AdicionarFilme(this);
-        }
         else
         {
-            Console.WriteLine("Abobrinha");
+            // Consistência com a classe Artista
+            artista.FilmesAtuados.Add(this); // Adicionando filme atuado
+            // Poderia usar o this.Elenco ... (pq o this se refere ao objeto atual)
+            Elenco.Add(artista); // Adicionando artista ao elenco (consistencia)
+            // Exemplo: duna2.AdicionarArtistaAoElenco(zendaya) - O this seria o duna2, que e o objeto
         }
     }
 

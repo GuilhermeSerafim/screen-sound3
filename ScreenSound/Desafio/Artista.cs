@@ -17,12 +17,19 @@
         }
 
 
-        public void AdicionarFilme(Filme filme)
+        public void AdicionarFilmeAtuado(Filme filme)
         {
-            FilmesAtuados.Add(filme);
             // This - Artista
-            // Consistência com a classe Filme
-            filme.Elenco.Add(this);
+            if (this.FilmesAtuados.Contains(filme))
+            {
+                Console.WriteLine($"O artista {this.Nome} já está no elenco do Filme {filme.Titulo}\n");
+            }
+            else
+            {
+                // Consistência com a classe Filme
+                FilmesAtuados.Add(filme); // Adicionando filme atuado (consistencia)
+                filme.Elenco.Add(this); // Adicionando artista ao elenco
+            }
         }
 
         public void MostrarFilmesAtuados()
@@ -34,7 +41,7 @@
                 return;
             }
 
-            Console.WriteLine($"Filmes de {this.Nome}...");
+            Console.WriteLine($"O {this.Nome} atuou em {this.QuantidadeDeFilmes} Filmes...");
             foreach (var filme in FilmesAtuados)
             {
                 Console.WriteLine($"Filme: {filme.Titulo}");

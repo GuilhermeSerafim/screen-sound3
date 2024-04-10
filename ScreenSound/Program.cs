@@ -247,22 +247,24 @@ Artista zendaya = new("Zendaya", 27);
 
 // Ao adicionar o elenco, dinamicamente o elenco aqui muda também
 Filme interestelar = new("Interestelar", 120);
-interestelar.AdicionarElenco(matthew);
-interestelar.AdicionarElenco(timotthée);
-interestelar.AdicionarElenco(timotthée);
-interestelar.AdicionarElenco(anne);
+interestelar.AdicionarArtistaAoElenco(matthew);
+interestelar.AdicionarArtistaAoElenco(timotthée);
+interestelar.AdicionarArtistaAoElenco(timotthée);
+interestelar.AdicionarArtistaAoElenco(anne);
 
 Filme duna2 = new("Duna 2", 150);
-duna2.AdicionarElenco(timotthée);
-duna2.AdicionarElenco(zendaya);
+duna2.AdicionarArtistaAoElenco(timotthée);
+duna2.AdicionarArtistaAoElenco(zendaya);
 
-// Desafio parte 1 Concluida
+//// Desafio parte 1 Concluída
 interestelar.ListarElenco();
 Console.WriteLine();
 
-timotthée.MostrarFilmesAtuados();
 
 
-// Desafio parte 2
+// Desafio parte 2 Concluída
 Filme wonka = new("Wonka", 200);
-timotthée.AdicionarFilme(wonka);
+timotthée.AdicionarFilmeAtuado(wonka);
+
+
+timotthée.MostrarFilmesAtuados();

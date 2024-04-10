@@ -23,5 +23,8 @@ internal class Avaliacao
         int nota = int.Parse(texto);
         return new Avaliacao(nota);
     }
+    // Utilização Comum: Métodos estáticos são comumente
+    // usados para implementar funcionalidades que são independentes
+    // do estado de um objeto específico. Por exemplo, métodos utilitários,
+    // métodos de fábrica, métodos de conversão e métodos de inicialização estática são frequentemente definidos como estáticos.
 }
-a

@@ -1,34 +1,27 @@
 ﻿namespace Alura.Filmes;
 
-public class Filme
+public class Filme(string titulo, int duracao)
 {
-    public string Titulo { get; set; }
-    public List<Artista> Elenco { get; set; }
-    public int Duracao { get; set; }
-
-    public Filme(string titulo, int duracao, List<Artista>? elenco)
-    {
-        if (elenco == null)
-        {
-            Elenco = new List<Artista>();
-        }
-        else
-        {
-            Elenco = elenco;
-        }
-
-        Titulo = titulo;
-        Duracao = duracao;
-    }
+    public string Titulo { get; set; } = titulo;
+    public List<Artista> Elenco { get; set; } = new List<Artista>();
+    public int Duracao { get; set; } = duracao;
 
     public void AdicionarElenco(Artista artista)
     {
-        Elenco.Add(artista);
-        Console.WriteLine($"{artista} adicionado/a ao elenco.");
-        Console.WriteLine("teste " + this);
-        if (!artista.FilmesAtuados.Contains(this))
+
+        if (artista.FilmesAtuados.Contains(this))
         {
+            Console.WriteLine($"O artista {artista.Nome} já está no elenco do Filme {this.Titulo}\n");
+        }
+        else if (!artista.FilmesAtuados.Contains(this))
+        {
+            Console.WriteLine($"{artista.Nome} adicionado/a ao elenco do Filme {this.Titulo}.\n");
+            // Consistência com a classe Artista
             artista.AdicionarFilme(this);
+        }
+        else
+        {
+            Console.WriteLine("Abobrinha");
         }
     }
 
@@ -40,7 +33,7 @@ public class Filme
         }
         else
         {
-            Console.WriteLine("Elenco... ");
+            Console.WriteLine($"Elenco do filme {this.Titulo}");
             foreach (var artista in Elenco)
             {
                 Console.WriteLine(artista.Nome);

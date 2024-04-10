@@ -164,10 +164,9 @@ void AvaliarUmaBanda()
     {
         Banda banda = bandasRegistradas[nomeDaBanda]; // Encapsulando para ter acesso aos metodos do mesmo
         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
-        int nota = int.Parse(Console.ReadLine()!);
-        //bandasRegistradas[nomeDaBanda].Add(nota);
-        bandasRegistradas[nomeDaBanda].AdicionarNota(new Avaliacao(nota)); // Acessando os metodos para adicionar nota (que encapsulamos na banda)
-        Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}");
+        Avaliacao avaliacao = Avaliacao.TextoParaAvaliacao(Console.ReadLine()!); // Como usei static, posso usar sem instanciar
+        banda.AdicionarNota(avaliacao); // Acessando os metodos para adicionar nota (que encapsulamos na banda)
+        Console.WriteLine($"\nA nota {avaliacao.Nota} foi registrada com sucesso para a banda {nomeDaBanda}");
         Thread.Sleep(2000);
         Console.Clear();
         ExibirOpcoesDoMenu();

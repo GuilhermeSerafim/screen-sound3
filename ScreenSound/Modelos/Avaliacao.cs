@@ -17,4 +17,10 @@ internal class Avaliacao
     }
 
     public int Nota { get; } // Acesso apenas para leitura (pois o construtor já seta o valor)
+
+    public static Avaliacao TextoParaAvaliacao(string texto)
+    {
+        int nota = int.Parse(texto);
+        return new Avaliacao(nota);
+    }
 }

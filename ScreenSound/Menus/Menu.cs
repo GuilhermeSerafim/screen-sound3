@@ -8,7 +8,7 @@ internal class Menu
     public void ExibirTituloDaOpcao(string titulo)
     {
         int quantidadeDeLetras = titulo.Length;
-        string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '=');
+        string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '-');
         Console.WriteLine(asteriscos);
         Console.WriteLine(titulo);
         Console.WriteLine(asteriscos + "\n");
@@ -91,12 +91,14 @@ internal class Menu
         {
             Console.WriteLine("Por favor, insira uma opção válida (número).");
             Thread.Sleep(3000);
+            Console.Clear();
             ExibirOpcoesDoMenu();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ocorreu um erro: {ex.Message}");
             Thread.Sleep(4000);
+            Console.Clear()
             ExibirOpcoesDoMenu();
         }
     }

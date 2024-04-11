@@ -3,4 +3,4 @@ using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
 Menu menu = new Menu();
-menu.ExibirOpcoesDoMenu();
+menu.Executar();

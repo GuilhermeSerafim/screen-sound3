@@ -8,7 +8,7 @@ internal class Menu
     public void ExibirTituloDaOpcao(string titulo)
     {
         int quantidadeDeLetras = titulo.Length;
-        string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '-');
+        string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
         Console.WriteLine(asteriscos);
         Console.WriteLine(titulo);
         Console.WriteLine(asteriscos + "\n");
@@ -29,7 +29,7 @@ internal class Menu
     }
 
 
-    public void ExibirOpcoesDoMenu()
+    public void Executar()
     {
         // Verifica se as bandas iniciais já foram inseridas
         if (bandasIniciais.Count == 0)
@@ -57,27 +57,27 @@ internal class Menu
                 case 1:
                     MenuRegistrarBanda menu1 = new();
                     menu1.Executar(this.bandasIniciais);
-                    ExibirOpcoesDoMenu();
+                    Executar();
                     break;
                 case 2:
                     MenuRegistrarAlbum menu2 = new();
                     menu2.Executar(this.bandasIniciais);
-                    ExibirOpcoesDoMenu();
+                    Executar();
                     break;
                 case 3:
                     MenuExibirBandas menu3 = new();
                     menu3.Executar(this.bandasIniciais);
-                    ExibirOpcoesDoMenu();
+                    Executar();
                     break;
                 case 4:
                     MenuAvaliarBanda menu4 = new();
                     menu4.Executar(this.bandasIniciais);
-                    ExibirOpcoesDoMenu();
+                    Executar();
                     break;
                 case 5:
                     MenuExibirDetalhes menu5 = new();
                     menu5.Executar(this.bandasIniciais);
-                    ExibirOpcoesDoMenu();
+                    Executar();
                     break;
                 case -1:
                     Console.WriteLine("Tchau tchau :)");
@@ -92,14 +92,14 @@ internal class Menu
             Console.WriteLine("Por favor, insira uma opção válida (número).");
             Thread.Sleep(3000);
             Console.Clear();
-            ExibirOpcoesDoMenu();
+            Executar();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ocorreu um erro: {ex.Message}");
             Thread.Sleep(4000);
             Console.Clear();
-            ExibirOpcoesDoMenu();
+            Executar();
         }
     }
     public Dictionary<string, Banda> InserirBandasIniciais()

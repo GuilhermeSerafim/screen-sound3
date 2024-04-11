@@ -7,6 +7,7 @@ namespace ScreenSound.Menus;
 internal class MenuExibirDetalhes : Menu
 {
 
+    // O metodo Executar está se reescrevendo, pois temos o metodo Executar também no Program.cs
     public void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         Console.Clear();

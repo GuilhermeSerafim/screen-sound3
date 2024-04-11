@@ -3,20 +3,7 @@ namespace ScreenSound.Menus;
 
 internal class Menu
 {
-    public string Jogador { get; set; }
-    public Dictionary<string, Banda> bandas { get; set; }
-    // Essa propriedade pertence à classe em si, e não a instâncias individuais da classe.
-    private static List<Banda> bandasIniciais = new List<Banda>();
-
-    // Construtor estático para inicializar com algumas bandas
-    // Chamado automaticamente quando a classe Exemplo é carregada pela primeira vez na memória.
-    static Menu()
-    {
-        foreach (var banda in bandasIniciais)
-        {
-
-        }
-    }
+    Dictionary<string /*Nome da banda*/, Banda/*Propriedades da banda*/> bandasIniciais = new();
 
     public void ExibirTituloDaOpcao(string titulo)
     {
@@ -42,8 +29,15 @@ internal class Menu
     }
 
 
-    public void ExibirOpcoesDoMenu(Dictionary<string, Banda> bandasRegistradas)
+    public void ExibirOpcoesDoMenu()
     {
+        // Verifica se as bandas iniciais já foram inseridas
+        if (bandasIniciais.Count == 0)
+        {
+            // Se as bandas iniciais não foram inseridas, insere-as
+            bandasIniciais = InserirBandasIniciais();
+        }
+
         ExibirLogo();
         Console.WriteLine("\nDigite 1 para registrar uma banda");
         Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
@@ -62,28 +56,28 @@ internal class Menu
             {
                 case 1:
                     MenuRegistrarBanda menu1 = new();
-                    menu1.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu(bandasRegistradas);
+                    menu1.Executar(this.bandasIniciais);
+                    ExibirOpcoesDoMenu();
                     break;
                 case 2:
                     MenuRegistrarAlbum menu2 = new();
-                    menu2.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu(bandasRegistradas);
+                    menu2.Executar(this.bandasIniciais);
+                    ExibirOpcoesDoMenu();
                     break;
                 case 3:
                     MenuExibirBandas menu3 = new();
-                    menu3.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu(bandasRegistradas);
+                    menu3.Executar(this.bandasIniciais);
+                    ExibirOpcoesDoMenu();
                     break;
                 case 4:
                     MenuAvaliarBanda menu4 = new();
-                    menu4.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu(bandasRegistradas);
+                    menu4.Executar(this.bandasIniciais);
+                    ExibirOpcoesDoMenu();
                     break;
                 case 5:
                     MenuExibirDetalhes menu5 = new();
-                    menu5.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu(bandasRegistradas);
+                    menu5.Executar(this.bandasIniciais);
+                    ExibirOpcoesDoMenu();
                     break;
                 case -1:
                     Console.WriteLine("Tchau tchau :)");
@@ -97,13 +91,29 @@ internal class Menu
         {
             Console.WriteLine("Por favor, insira uma opção válida (número).");
             Thread.Sleep(3000);
-            ExibirOpcoesDoMenu(bandasRegistradas);
+            ExibirOpcoesDoMenu();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ocorreu um erro: {ex.Message}");
             Thread.Sleep(4000);
-            ExibirOpcoesDoMenu(bandasRegistradas);
+            ExibirOpcoesDoMenu();
         }
+    }
+    public Dictionary<string, Banda> InserirBandasIniciais()
+    {
+        // Bandas iniciais
+        Banda ira = new("Ira!");
+        ira.AdicionarNota(new Avaliacao(8));
+        ira.AdicionarNota(new Avaliacao(9));
+        ira.AdicionarNota(new Avaliacao(10));
+        Banda ironMaiden = new("Iron Maiden");
+        ironMaiden.AdicionarNota(new Avaliacao(10));
+        this.bandasIniciais = new()
+        {
+            { ira.Nome, ira },
+            { ironMaiden.Nome, ironMaiden }
+         };
+        return this.bandasIniciais;
     }
 }

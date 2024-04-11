@@ -1,10 +1,23 @@
-﻿
-using ScreenSound.Modelos;
-
+﻿using ScreenSound.Modelos;
 namespace ScreenSound.Menus;
 
 internal class Menu
 {
+    public string Jogador { get; set; }
+    public Dictionary<string, Banda> bandas { get; set; }
+    // Essa propriedade pertence à classe em si, e não a instâncias individuais da classe.
+    private static List<Banda> bandasIniciais = new List<Banda>();
+
+    // Construtor estático para inicializar com algumas bandas
+    // Chamado automaticamente quando a classe Exemplo é carregada pela primeira vez na memória.
+    static Menu()
+    {
+        foreach (var banda in bandasIniciais)
+        {
+
+        }
+    }
+
     public void ExibirTituloDaOpcao(string titulo)
     {
         int quantidadeDeLetras = titulo.Length;

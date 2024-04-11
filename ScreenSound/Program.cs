@@ -1,4 +1,5 @@
 ﻿// A declaração using é para usar o namespace sem declarar o mesmo toda vez
+using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
 // Bandas iniciais
@@ -56,10 +57,14 @@ void ExibirOpcoesDoMenu()
                 MostrarBandasRegistradas();
                 break;
             case 4:
-                AvaliarUmaBanda();
+                MenuAvaliarBanda menu4 = new();
+                menu4.Executar(bandasRegistradas);
+                ExibirOpcoesDoMenu();
                 break;
             case 5:
-                ExibirMedia();
+                MenuExibirDetalhes menu5 = new();
+                menu5.Executar(bandasRegistradas);
+                ExibirOpcoesDoMenu();
                 break;
             case -1:
                 Console.WriteLine("Tchau tchau :)");
@@ -87,7 +92,6 @@ void ExibirOpcoesDoMenu()
 void RegistrarAlbum()
 {
     Console.Clear();
-    ExibirTituloDaOpcao("Registro de álbuns");
     Console.Write("Digite a banda cujo álbum deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
     if (bandasRegistradas.ContainsKey(nomeDaBanda))
@@ -115,7 +119,6 @@ void RegistrarAlbum()
 void RegistrarBanda()
 {
     Console.Clear();
-    ExibirTituloDaOpcao("Registro das bandas");
     Console.Write("Digite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
     // Como aqui não são bandas iniciais, quem vai digitar o nome da banda é o user, então vamos encapsular a resposta no construtor
@@ -130,7 +133,6 @@ void RegistrarBanda()
 void MostrarBandasRegistradas()
 {
     Console.Clear();
-    ExibirTituloDaOpcao("Exibindo todas as bandas registradas na nossa aplicação");
 
     foreach (string banda in bandasRegistradas.Keys)
     {
@@ -144,69 +146,4 @@ void MostrarBandasRegistradas()
 
 }
 
-void ExibirTituloDaOpcao(string titulo)
-{
-    int quantidadeDeLetras = titulo.Length;
-    string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
-    Console.WriteLine(asteriscos);
-    Console.WriteLine(titulo);
-    Console.WriteLine(asteriscos + "\n");
-}
-
-void AvaliarUmaBanda()
-{
-    Console.Clear();
-    ExibirTituloDaOpcao("Avaliar banda");
-    Console.Write("Digite o nome da banda que deseja avaliar: ");
-    string nomeDaBanda = Console.ReadLine()!;
-    // Ele verifica se a coleção contém uma chave específica (bool)
-    if (bandasRegistradas.ContainsKey(nomeDaBanda))
-    {
-        Banda banda = bandasRegistradas[nomeDaBanda]; // Encapsulando para ter acesso aos metodos do mesmo
-        Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
-        Avaliacao avaliacao = Avaliacao.TextoParaAvaliacao(Console.ReadLine()!); // Como usei static, posso usar sem instanciar
-        banda.AdicionarNota(avaliacao); // Acessando os metodos para adicionar nota (que encapsulamos na banda)
-        Console.WriteLine($"\nA nota {avaliacao.Nota} foi registrada com sucesso para a banda {nomeDaBanda}");
-        Thread.Sleep(2000);
-        Console.Clear();
-        ExibirOpcoesDoMenu();
-    }
-    else
-    {
-        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
-        Console.ReadKey();
-        Console.Clear();
-        ExibirOpcoesDoMenu();
-    }
-
-}
-
-void ExibirMedia()
-{
-    Console.Clear();
-    ExibirTituloDaOpcao("Exibir detalhes da banda");
-    Console.Write("Digite o nome da banda: ");
-    string nomeDaBanda = Console.ReadLine()!;
-    if (bandasRegistradas.ContainsKey(nomeDaBanda))
-    {
-        Banda banda = bandasRegistradas[nomeDaBanda];
-        Console.WriteLine($"\nA média da banda {nomeDaBanda} é {banda.Media}.");
-        Console.WriteLine("Digite uma tecla para votar ao menu principal");
-        Console.ReadKey();
-        Console.Clear();
-        ExibirOpcoesDoMenu();
-
-    }
-    else
-    {
-        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-        Console.WriteLine("Digite uma tecla para voltar ao menu principal");
-        Console.ReadKey();
-        Console.Clear();
-        ExibirOpcoesDoMenu();
-    }
-}
-
 ExibirOpcoesDoMenu();
-

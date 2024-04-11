@@ -98,7 +98,7 @@ internal class Menu
         {
             Console.WriteLine($"Ocorreu um erro: {ex.Message}");
             Thread.Sleep(4000);
-            Console.Clear()
+            Console.Clear();
             ExibirOpcoesDoMenu();
         }
     }

@@ -7,7 +7,7 @@ internal class MenuExibirBandas : Menu
     public void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         Console.Clear();
-
+        ExibirTituloDaOpcao("Bandas registradas:");
         foreach (string banda in bandasRegistradas.Keys)
         {
             Console.WriteLine($"Banda: {banda}");

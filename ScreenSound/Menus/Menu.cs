@@ -1,4 +1,5 @@
 ﻿using ScreenSound.Modelos;
+
 namespace ScreenSound.Menus;
 
 internal class Menu
@@ -18,18 +19,18 @@ internal class Menu
     {
         Console.WriteLine(@"
 
-░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
-");
+            ░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
+            ██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
+            ╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
+            ░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
+            ██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
+            ╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
+        ");
         Console.WriteLine("Boas vindas ao Screen Sound 2.0!");
     }
 
 
-    public void Executar()
+    public void ExibirOpcoesDoMenu()
     {
         // Verifica se as bandas iniciais já foram inseridas
         if (bandasIniciais.Count == 0)
@@ -57,27 +58,27 @@ internal class Menu
                 case 1:
                     MenuRegistrarBanda menu1 = new();
                     menu1.Executar(this.bandasIniciais);
-                    Executar();
+                    ExibirOpcoesDoMenu();
                     break;
                 case 2:
                     MenuRegistrarAlbum menu2 = new();
                     menu2.Executar(this.bandasIniciais);
-                    Executar();
+                    ExibirOpcoesDoMenu();
                     break;
                 case 3:
                     MenuExibirBandas menu3 = new();
                     menu3.Executar(this.bandasIniciais);
-                    Executar();
+                    ExibirOpcoesDoMenu();
                     break;
                 case 4:
                     MenuAvaliarBanda menu4 = new();
                     menu4.Executar(this.bandasIniciais);
-                    Executar();
+                    ExibirOpcoesDoMenu();
                     break;
                 case 5:
                     MenuExibirDetalhes menu5 = new();
                     menu5.Executar(this.bandasIniciais);
-                    Executar();
+                    ExibirOpcoesDoMenu();
                     break;
                 case -1:
                     Console.WriteLine("Tchau tchau :)");
@@ -92,15 +93,21 @@ internal class Menu
             Console.WriteLine("Por favor, insira uma opção válida (número).");
             Thread.Sleep(3000);
             Console.Clear();
-            Executar();
+            ExibirOpcoesDoMenu();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Ocorreu um erro: {ex.Message}");
             Thread.Sleep(4000);
             Console.Clear();
-            Executar();
+            ExibirOpcoesDoMenu();
         }
+    }
+
+    // virtual - indicando que ao metodo que ele pode ser sobreescrito
+    public virtual void Executar(Dictionary<string, Banda> bandasRegistradas)
+    {
+        Console.Clear();
     }
     public Dictionary<string, Banda> InserirBandasIniciais()
     {

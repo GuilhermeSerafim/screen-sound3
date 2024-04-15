@@ -4,7 +4,7 @@ namespace ScreenSound.Modelos;
 
 internal class Album
 {
-    public static int ContadorDeObjetos = 0; 
+    public static int ContadorDeObjetos = 0;
     private List<Musica> musicas = new List<Musica>();
     public string Nome { get; }
     public int DuracaoTotal => musicas.Sum(musica => musica.Duracao); //     Soma das músicas

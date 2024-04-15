@@ -1,5 +1,4 @@
-﻿
-using ScreenSound.Modelos;
+﻿using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
 
@@ -8,9 +7,11 @@ internal class MenuExibirDetalhes : Menu
 {
 
     // O metodo Executar está se reescrevendo, pois temos o metodo Executar também no Program.cs
-    public void Executar(Dictionary<string, Banda> bandasRegistradas)
+    // Override - agora estamos indicando que o metodo será sobreescrito
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
-        Console.Clear();
+        // Base refere-se aos membros da classe mãe
+        base.Executar(bandasRegistradas); // Vai ser executado o Console.Clear();
         ExibirTituloDaOpcao("Exibir detalhes da banda");
         Console.Write("Digite o nome da banda: ");
         string nomeDaBanda = Console.ReadLine()!;

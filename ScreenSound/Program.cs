@@ -1,6 +1,8 @@
-﻿// A declaração using é para usar o namespace sem declarar o mesmo toda vez
-using ScreenSound.Menus;
-using ScreenSound.Modelos;
+﻿// DESAFIO FORMA GEOMETRICA
+// Criar uma hierarquia de classes representando formas geométricas, como Quadrado, Círculo e Triângulo.
+// Utilize herança para criar uma classe base chamada FormaGeometrica, que contenha métodos para calcular a área e o perímetro de uma forma.
 
-Menu menu = new Menu();
-menu.Executar();
+using ScreenSound.Desafios.FormasGeometricas;
+
+CalcularArea formaGeometrica = new CalcularArea();
+formaGeometrica.EscolherForma();

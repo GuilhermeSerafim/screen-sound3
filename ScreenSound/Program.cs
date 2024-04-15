@@ -4,5 +4,5 @@
 
 using ScreenSound.Desafios.FormasGeometricas;
 
-CalcularArea formaGeometrica = new CalcularArea();
+CalcularFormaGeometrica formaGeometrica = new CalcularFormaGeometrica();
 formaGeometrica.EscolherForma();

@@ -2,7 +2,7 @@
 
 internal class Banda : IAvaliavel // Implementando a interface
 {
-    private List<Album> albuns = new();
+    public List<Album> albuns = new();
     private List<Avaliacao> notas = new();
     public string Nome { get; }
 

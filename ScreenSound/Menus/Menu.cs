@@ -76,8 +76,12 @@ internal class Menu
                     ExibirOpcoesDoMenu();
                     break;
                 case 5:
-                    MenuExibirDetalhes menu5 = new();
-                    menu5.Executar(this.bandasIniciais);
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    MenuExibirDetalhes menu7 = new();
+                    menu7.Executar(this.bandasIniciais);
                     ExibirOpcoesDoMenu();
                     break;
                 case -1:

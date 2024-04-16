@@ -3,7 +3,7 @@
 internal class Banda : IAvaliavel // Implementando a interface
 {
     private List<Album> albuns = new();
-    private List<Avaliacao> avaliacoes = new();
+    private List<Avaliacao> notas = new();
     public string Nome { get; }
 
     public Banda(string nome) => Nome = nome;
@@ -12,8 +12,8 @@ internal class Banda : IAvaliavel // Implementando a interface
     {
         get
         {
-            if (avaliacoes.Count == 0) return 0;
-            else return avaliacoes.Average(avaliacao => avaliacao.Nota);
+            if (notas.Count == 0) return 0;
+            else return notas.Average(itemNota => itemNota.Nota);
         }
     }
 
@@ -21,9 +21,9 @@ internal class Banda : IAvaliavel // Implementando a interface
     {
         albuns.Add(album);
     }
-    public void AdicionarNota(Avaliacao avaliacao)
+    public void AdicionarNota(Avaliacao nota)
     {
-        avaliacoes.Add(avaliacao);
+        notas.Add(nota);
     }
 
     public void ExibirDiscografia()

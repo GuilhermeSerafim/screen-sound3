@@ -2,12 +2,23 @@
 // Ele é usado para organizar e evitar conflitos de nome entre os tipos em um projeto.
 namespace ScreenSound.Modelos;
 
-internal class Album
+internal class Album : IAvaliavel
 {
     public static int ContadorDeObjetos = 0;
     private List<Musica> musicas = new List<Musica>();
+    // Primeiro tenho que guardar uma lista que adiciona essas notas
+    private List<Avaliacao> notas = new();
     public string Nome { get; }
     public int DuracaoTotal => musicas.Sum(musica => musica.Duracao); //     Soma das músicas
+
+    public double Media
+    {
+        get
+        {
+            if (notas.Count == 0) return 0;
+            else return notas.Average(itemNota => itemNota.Nota);
+        }
+    }
 
     public void AdicionarMusica(Musica musica)
     {
@@ -29,5 +40,10 @@ internal class Album
             Console.WriteLine($"Música: {musica.Nome}");
         }
         Console.WriteLine($"Duração total em segundos do álbum {Nome}: {DuracaoTotal}s");
+    }
+
+    public void AdicionarNota(Avaliacao nota)
+    {
+        notas.Add(nota);
     }
 }

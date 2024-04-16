@@ -44,7 +44,9 @@ internal class Menu
         Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
         Console.WriteLine("Digite 3 para mostrar todas as bandas");
         Console.WriteLine("Digite 4 para avaliar uma banda");
-        Console.WriteLine("Digite 5 para exibir a media de notas de uma banda");
+        Console.WriteLine("Digite 5 para avaliar um álbum");
+        Console.WriteLine("Digite 6 para avaliar uma música");
+        Console.WriteLine("Digite 7 para exibir a media de notas de uma banda");
         Console.WriteLine("Digite -1 para sair");
         try
         {
@@ -76,6 +78,9 @@ internal class Menu
                     ExibirOpcoesDoMenu();
                     break;
                 case 5:
+                    MenuAvaliarAlbum menu5 = new();
+                    menu5.Executar(this.bandasIniciais);
+                    ExibirOpcoesDoMenu();
                     break;
                 case 6:
                     break;

@@ -8,7 +8,7 @@ internal class MenuAvaliarAlbum : Menu
     {
         base.Executar(bandasRegistradas);
         ExibirTituloDaOpcao("Avaliar album");
-        Console.Write("Digite o nome da banda que você quer avaliar: ");
+        Console.Write("Digite a banda do album a ser avaliado: ");
         string nomeDaBanda = Console.ReadLine()!;
         // Ele verifica se a coleção contém uma chave específica (bool)
         if (bandasRegistradas.ContainsKey(nomeDaBanda))

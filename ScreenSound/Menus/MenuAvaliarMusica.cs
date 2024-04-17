@@ -16,10 +16,10 @@ internal class MenuAvaliarMusica : Menu
             Banda banda = bandasRegistradas[nomeDaBanda];
 
             Console.WriteLine($"Músicas disponíveis da banda {banda.Nome}");
-            foreach (var item in banda.musicas) // Como eu pego todas as musicas da banda? Sendo que n tem list? Tenho que criar, correto?
-            {
+            //foreach (var item in banda.musicas) // Como eu pego todas as musicas da banda? Sendo que n tem list? Tenho que criar, correto?
+            //{
 
-            }
+            //}
         }
 
     }

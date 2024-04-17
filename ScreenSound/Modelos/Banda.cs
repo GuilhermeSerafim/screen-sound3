@@ -3,6 +3,7 @@
 internal class Banda : IAvaliavel // Implementando a interface
 {
     public List<Album> albuns = new();
+    // Expõe o enumerador que dá suporte a uma iteração simples em uma coleção de um tipo especificado. (PROTEGENDO NOSSA LÓGICA)
     public IEnumerable<Album> Albuns => albuns; // Reduzindo acesso, pois list tem metodos que podem implicar na nossa regra de negocio (Clear por ex)
     private List<Avaliacao> notas = new();
     public string Nome { get; }

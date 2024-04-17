@@ -1,10 +1,11 @@
-﻿using ScreenSound.Modelos;
+﻿using OpenAI_API;
+using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
 
 internal class MenuRegistrarBanda : Menu
 {
-    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override async void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         // Base refere-se aos membros da classe mãe
         base.Executar(bandasRegistradas); // Vai ser executado o Console.Clear();
@@ -16,7 +17,18 @@ internal class MenuRegistrarBanda : Menu
         Banda banda = new(nomeDaBanda);
         bandasRegistradas.Add(banda.Nome, banda);
         Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
-        Thread.Sleep(4000);
+
+        // Parte do chagpt
+        var client = new OpenAIAPI("hashapi");
+
+        var chat = client.Chat.CreateConversation();
+
+        chat.AppendSystemMessage($"Resuma a banda {nomeDaBanda} em 1 parágrafo. Adote um estilo informal");
+
+        string resposta = await chat.GetResponseFromChatbotAsync();
+        banda.Resumo = resposta;
+        // Tiramos isso pq a requsição em si ja demora um pouco
+        //Thread.Sleep(4000);
         Console.Clear();;
     }
 }

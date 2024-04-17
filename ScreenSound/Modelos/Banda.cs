@@ -8,7 +8,8 @@ internal class Banda : IAvaliavel // Implementando a interface
     private List<Avaliacao> notas = new();
     public string Nome { get; }
 
-
+    // Inputado pelo Chatgpt
+    public string Resumo { get; set; }
     public Banda(string nome) => Nome = nome;
 
     public double Media
